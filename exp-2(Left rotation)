@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> leftRotate(const vector<int>& arr, int d)
+{
+    int n = arr.size();
+    vector<int> rotatedArr(n);
+    for (int i = 0; i < n; ++i)
+    {
+        int rotatedIndex = (i - d + n) % n;
+        rotatedArr[rotatedIndex] = arr[i];
+    }
+
+    return rotatedArr;
+}
+
+int main()
+{
+    int n, d;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+    vector<int> arr(n);
+    cout << "Enter " << n << " integers: ";
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> arr[i];
+    }
+    cout << "Enter the number of left rotations: ";
+    cin >> d;
+    vector<int> rotatedArr = leftRotate(arr, d);
+    cout << "Array after " << d << " left rotations: ";
+    for (int num : rotatedArr)
+    {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
