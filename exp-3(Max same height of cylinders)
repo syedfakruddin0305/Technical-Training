@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int equalStacks(vector<int>& h1, vector<int>& h2, vector<int>& h3)
+{
+    for (int i = h1.size() - 2; i >= 0; --i) {
+        h1[i] += h1[i + 1];
+    }
+    for (int i = h2.size() - 2; i >= 0; --i) {
+        h2[i] += h2[i + 1];
+    }
+    for (int i = h3.size() - 2; i >= 0; --i) {
+        h3[i] += h3[i + 1];
+    }
+    reverse(h1.begin(), h1.end());
+    reverse(h2.begin(), h2.end());
+    reverse(h3.begin(), h3.end());
+    for (int i = 0; i < h1.size(); ++i)
+    {
+        for (int j = 0; j < h2.size(); ++j)
+        {
+            for (int k = 0; k < h3.size(); ++k) 
+            {
+                if (h1[i] == h2[j] && h2[j] == h3[k]) 
+                {
+                    return h1[i];
+                }
+            }
+        }
+    }
+    return 0;
+}
+int main() 
+{
+    vector<int> h1 = {3, 2, 1, 1, 1};
+    vector<int> h2 = {4, 3, 2};
+    vector<int> h3 = {1, 1, 4, 1};
+    int maxCommonHeight = equalStacks(h1, h2, h3);
+    cout << "Maximum common height of the stacks: " << maxCommonHeight << endl;
+    return 0;
+}
